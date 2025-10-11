@@ -1,11 +1,19 @@
-import { Text, View } from "react-native";
+import { icons } from "@/constants/icons";
+import { images } from "@/constants/images";
+import { Image, ScrollView, View } from "react-native";
 
 export default function Index() {
   return (
-    <View className="flex-1 justify-center items-center "
+    <View className="flex-1 bg-primary "
     >
-      <Text className="text-dark-200 font-bold text-6xl">welcome</Text>
-
+      <Image source={images.bg} className="absolute w-full z-0"/>
+      <ScrollView className="flex-1 px-5 mt-20 mb-5 mx-auto"
+      showsVerticalScrollIndicator={false} contentContainerStyle={{
+        minHeight:"100%", paddingBottom:10
+      }}>
+        <Image source={icons.logo} className="w-12 h-10"/>
+      </ScrollView>
+      
       
     </View>
   );
