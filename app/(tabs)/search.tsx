@@ -20,14 +20,20 @@ const search = () => {
   }),true)
 
  useEffect(()=>{
-  const func = async () =>{
-    if (searchQuery.trim()){
+  
+    const titmeoutid = setTimeout(async () => {
+      if (searchQuery.trim()){
       await loadmovies();
     } else{
       await loadmovies();
     }
-  }
-  func()
+  
+      
+    }, 500);
+
+
+    
+  return ()=>clearTimeout(titmeoutid)
  },[searchQuery])
 
   return (
