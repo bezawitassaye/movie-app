@@ -4,12 +4,11 @@ import { icons } from '@/constants/icons'
 import { images } from '@/constants/images'
 import { fetchMovies } from '@/services/api'
 import useFetch from '@/services/useFetch'
-import { useRouter } from 'expo-router'
 import React from 'react'
 import { ActivityIndicator, FlatList, Image, Text, View } from 'react-native'
 
 const search = () => {
-  const router = useRouter()
+  
   const {data:movies,
         loading:moviesloading,
         error:movieserror
