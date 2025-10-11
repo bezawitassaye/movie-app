@@ -2,13 +2,13 @@ import { icons } from "@/constants/icons";
 import { Link } from "expo-router";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 
-interface Movie {
-  id: number;
-  poster_path?: string;
-  title?: string;
-  vote_average?: number;
-  release_date?: string;
-}
+// interface Movie {
+//   id: number;
+//   poster_path?: string;
+//   title?: string;
+//   vote_average?: number;
+//   release_date?: string;
+// }
 
 const MovieCard = ({ id, poster_path, title, vote_average, release_date }: Movie) => {
   return (
