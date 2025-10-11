@@ -11,6 +11,30 @@ const _layout = () => {
           headerShown: false,
         }}
       />
+
+      <Tabs.Screen
+        name="profile"
+        options={{
+          title: 'profile',
+          headerShown: false,
+        }}
+      />
+
+      <Tabs.Screen
+        name="saved"
+        options={{
+          title: 'saved',
+          headerShown: false,
+        }}
+      />
+
+      <Tabs.Screen
+        name="search"
+        options={{
+          title: 'search',
+          headerShown: false,
+        }}
+      />
     </Tabs>
   );
 };
