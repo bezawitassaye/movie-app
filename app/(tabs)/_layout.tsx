@@ -11,14 +11,15 @@ const _layout = () => {
           headerShown: false,
         }}
       />
-
       <Tabs.Screen
-        name="profile"
+        name="search"
         options={{
-          title: 'profile',
+          title: 'search',
           headerShown: false,
         }}
       />
+
+      
 
       <Tabs.Screen
         name="saved"
@@ -28,10 +29,12 @@ const _layout = () => {
         }}
       />
 
+      
+
       <Tabs.Screen
-        name="search"
+        name="profile"
         options={{
-          title: 'search',
+          title: 'profile',
           headerShown: false,
         }}
       />
