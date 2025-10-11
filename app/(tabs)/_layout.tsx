@@ -5,15 +5,15 @@ import { Tabs } from 'expo-router';
 import React from 'react';
 import { Image, ImageBackground, Text } from 'react-native';
 
-const TabIcon = ()=>{
+const TabIcon = ({focused,icon,title}:any)=>{
     return (
         <ImageBackground
             source={images.highlight}
             className='felx flex-row w-full flex-1 min-w-[112px] min-h-14 mt-4 justify-center
             items-center rounded-full overflow-hidden'>
-               <Image source={icons.home}
+               <Image source={icon}
                tintColor={"#151312"} className='size-5'/>
-               <Text className='text-secondary text-base font-semibold ml-2'>Home</Text>
+               <Text className='text-secondary text-base font-semibold ml-2'>{title}</Text>
 
             </ImageBackground>
     )
@@ -30,7 +30,10 @@ const _layout = () => {
           headerShown: false,
           tabBarIcon:({focused})=>(
         
-            <TabIcon/>
+            <TabIcon
+            focused={focused}
+            icon={icons.home}
+            title="home"/>
            
           )
         }}
@@ -41,7 +44,10 @@ const _layout = () => {
           title: 'search',
           headerShown: false,
           tabBarIcon:({focused})=>(
-            <TabIcon/>
+            <TabIcon
+            focused={focused}
+            icon={icons.search}
+            title="search"/>
           )
         }}
       />
@@ -54,7 +60,10 @@ const _layout = () => {
           title: 'saved',
           headerShown: false,
           tabBarIcon:({focused})=>(
-            <TabIcon/>
+            <TabIcon
+            focused={focused}
+            icon={icons.save}
+            title="saved"/>
           )
         }}
       />
@@ -67,7 +76,11 @@ const _layout = () => {
           title: 'profile',
           headerShown: false,
           tabBarIcon:({focused})=>(
-            <TabIcon/>
+            <TabIcon
+            focused={focused}
+            icon={icons.person}
+            title="Profile"
+            />
           )
         }}
       />
