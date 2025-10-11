@@ -4,7 +4,7 @@ import { icons } from '@/constants/icons'
 import { images } from '@/constants/images'
 import { fetchMovies } from '@/services/api'
 import useFetch from '@/services/useFetch'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { ActivityIndicator, FlatList, Image, Text, View } from 'react-native'
 
 const search = () => {
@@ -12,10 +12,24 @@ const search = () => {
   
   const {data:movies,
         loading:moviesloading,
-        error:movieserror
+        error:movieserror,
+        refetch:loadmovies,
+        reset,
   } = useFetch(() => fetchMovies({
     query:searchQuery
-  }))
+  }),true)
+
+ useEffect(()=>{
+  const func = async () =>{
+    if (searchQuery.trim()){
+      await loadmovies();
+    } else{
+      await loadmovies();
+    }
+  }
+  func()
+ },[searchQuery])
+
   return (
     <View className='flex-1 bg-primary'>
       <Image source={images.bg} className='flex-1 absolute w-full z-0'
