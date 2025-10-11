@@ -3,10 +3,11 @@ import { icons } from '@/constants/icons';
 import { images } from '@/constants/images';
 import { Tabs } from 'expo-router';
 import React from 'react';
-import { Image, ImageBackground, Text } from 'react-native';
+import { Image, ImageBackground, Text, View } from 'react-native';
 
 const TabIcon = ({focused,icon,title}:any)=>{
-    return (
+    if (focused){
+        return (
         <ImageBackground
             source={images.highlight}
             className='felx flex-row w-full flex-1 min-w-[112px] min-h-14 mt-4 justify-center
@@ -17,6 +18,16 @@ const TabIcon = ({focused,icon,title}:any)=>{
 
             </ImageBackground>
     )
+
+    }
+
+    return (
+        <View className='size-full justify-center items-center mt-4 rounded-full'>
+            <Image source={icon} className='size-5'
+            tintColor="#A8B5DB"/>
+        </View>
+    )
+    
 }
 
 
