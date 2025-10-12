@@ -22,21 +22,24 @@ const search = () => {
 
  useEffect(()=>{
     
-  updateSearchCount(searchQuery,movies)
   
-    const titmeoutid = setTimeout(async () => {
-      if (searchQuery.trim()){
-      await loadmovies();
-    } else{
-      await loadmovies();
+
+   const timeoutId = setTimeout(async () => {
+  if (searchQuery.trim()) {
+    await loadmovies();
+
+    if (movies?.length > 0 && movies[0]) {
+      await updateSearchCount(searchQuery, movies[0]);
     }
-  
-      
-    }, 500);
+  } else {
+    await loadmovies();
+  }
+}, 500);
+
 
 
     
-  return ()=>clearTimeout(titmeoutid)
+  return ()=>clearTimeout(timeoutId)
  },[searchQuery])
 
   return (
