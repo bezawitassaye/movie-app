@@ -21,10 +21,10 @@
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false
     },
-    "web": {
-      "output": "static",
-      "favicon": "./assets/images/logo.png"
-    },
+    // "web": {
+    //   "output": "static",
+    //   "favicon": "./assets/images/logo.png"
+    // },
     "plugins": [
       "expo-router",
       [
