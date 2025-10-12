@@ -9,105 +9,105 @@ import React, { useEffect, useState } from 'react'
 import { ActivityIndicator, FlatList, Image, Text, View } from 'react-native'
 
 const search = () => {
-  const [searchQuery,SetsearchQuery]=useState("")
-  
-  const {data:movies,
-        loading:moviesloading,
-        error:movieserror,
-        refetch:loadmovies,
-        reset,
+  const [searchQuery, SetsearchQuery] = useState("")
+
+  const { data: movies,
+    loading: moviesloading,
+    error: movieserror,
+    refetch: loadmovies,
+    reset,
   } = useFetch(() => fetchMovies({
-    query:searchQuery
-  }),true)
+    query: searchQuery
+  }), true)
 
- useEffect(()=>{
-    
-  
+  useEffect(() => {
 
-   const timeoutId = setTimeout(async () => {
-  if (searchQuery.trim()) {
-    await loadmovies();
+    const timeoutId = setTimeout(async () => {
+      if (searchQuery.trim()) {
+        await loadmovies();
 
-    if (movies?.length > 0 && movies[0]) {
-      await updateSearchCount(searchQuery, movies[0]);
+
+      } else {
+        await loadmovies();
+      }
+    }, 500);
+
+    return () => clearTimeout(timeoutId)
+  }, [searchQuery])
+
+  useEffect( ()=>{
+     if (movies?.length > 0 && movies[0]) {
+       updateSearchCount(searchQuery, movies[0]);
     }
-  } else {
-    await loadmovies();
-  }
-}, 500);
+  },[movies])
 
-
-
-    
-  return ()=>clearTimeout(timeoutId)
- },[searchQuery])
 
   return (
     <View className='flex-1 bg-primary'>
       <Image source={images.bg} className='flex-1 absolute w-full z-0'
-      resizeMode='cover'/>
+        resizeMode='cover' />
 
       <FlatList data={movies}
-      renderItem={({item})=> <MovieCard {...item}/>}
-      keyExtractor={(item) => item.id.toString()}
-      className='px-5'
-      numColumns={3}
-      columnWrapperStyle={{
-        justifyContent:"center",
-        gap:16,
-        marginVertical:16
-      }}
-      contentContainerStyle={{paddingBottom:100}}
-      ListHeaderComponent={
-        <>
-           <View className='w-full flex-row justify-center mt-20 items-center'>
-             <Image source={icons.logo} className='w-12 h-10'/>
-           </View>
+        renderItem={({ item }) => <MovieCard {...item} />}
+        keyExtractor={(item) => item.id.toString()}
+        className='px-5'
+        numColumns={3}
+        columnWrapperStyle={{
+          justifyContent: "center",
+          gap: 16,
+          marginVertical: 16
+        }}
+        contentContainerStyle={{ paddingBottom: 100 }}
+        ListHeaderComponent={
+          <>
+            <View className='w-full flex-row justify-center mt-20 items-center'>
+              <Image source={icons.logo} className='w-12 h-10' />
+            </View>
 
-           <View className='mt-5'>
+            <View className='mt-5'>
               <SearchBar
-               value={searchQuery}
-               onChangeText={(text:string)=>SetsearchQuery(text)}
-               placeholder='Search movies...'/>
-           </View>
+                value={searchQuery}
+                onChangeText={(text: string) => SetsearchQuery(text)}
+                placeholder='Search movies...' />
+            </View>
 
-           {
-            moviesloading && (
-              <ActivityIndicator size="large" color="#0000ff"  className="my-3"/>
-           )
-           }
+            {
+              moviesloading && (
+                <ActivityIndicator size="large" color="#0000ff" className="my-3" />
+              )
+            }
 
-           {
-            moviesloading && (
-              
-              <Text className="text-red-500 px-5 my-3">
-                Error:{movieserror?.message}
+            {
+              moviesloading && (
 
+                <Text className="text-red-500 px-5 my-3">
+                  Error:{movieserror?.message}
+
+                </Text>
+              )
+            }
+
+            {
+              !moviesloading && !movieserror && searchQuery.trim()
+              && movies?.length > 0 && (
+                <Text className='text-xl text-white font-bold'>
+                  Search Results for{" "}
+                  <Text className='text-accent '>{searchQuery}</Text>
+                </Text>
+              )
+            }
+          </>
+        }
+
+        ListEmptyComponent={
+          !moviesloading && !movieserror ? (
+            <View className='mt-10 px-5'>
+              <Text className='text-center text-gray-500'>
+                {searchQuery.trim() ? "No movies found" : "search for a movie"}
               </Text>
-            )
-           }
-
-           {
-            !moviesloading && !movieserror && searchQuery.trim()
-            && movies?. length > 0 && (
-              <Text className='text-xl text-white font-bold'>
-                Search Results for{" "}
-                <Text className='text-accent '>{searchQuery}</Text>
-              </Text>
-            )
-           }
-        </>
-      }
-
-      ListEmptyComponent={
-        !moviesloading && !movieserror ?(
-          <View className='mt-10 px-5'>
-            <Text className='text-center text-gray-500'>
-              {searchQuery.trim()? "No movies found":"search for a movie"}
-            </Text>
-          </View>  
-        ): null
-      }
+            </View>
+          ) : null
+        }
       />
     </View>
   )
