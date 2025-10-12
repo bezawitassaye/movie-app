@@ -4,7 +4,7 @@ import { Link } from 'expo-router';
 import React from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 const TrendingCards = ({ movie: { movie_id, title, poster_url }, index }: TrendingCardProps) => {
-    console.log(poster_url, movie_id)
+   
     return (
         <Link href={`/movies/${movie_id}`} asChild>
             <TouchableOpacity className='w-32 relative pl-5'>

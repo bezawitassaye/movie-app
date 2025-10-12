@@ -25,9 +25,7 @@ const MovieInfo = ({ label, value }: MovieInfoProps) => (
       {value || "N/A"}
     </Text>
   </View>
-);
-
-const Details = () => {
+);const MovieDetails = () => {
   const router = useRouter();
   const { id } = useLocalSearchParams();
 
@@ -128,4 +126,4 @@ const Details = () => {
   );
 };
 
-export default Details;
+export default MovieDetails
