@@ -62,10 +62,13 @@ export default function Index() {
 
       <FlatList
         data={trendingMovies}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        ItemSeparatorComponent={()=> <View className="w-4"/>}
         renderItem={({ item }) => (
           <Text className="text-white text-sm">{item.title}</Text>
         )}
-        scrollEnabled={false} // disable FlatList scroll inside ScrollView
+         // disable FlatList scroll inside ScrollView
       />
     </View>
   )
