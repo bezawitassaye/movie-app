@@ -1,5 +1,6 @@
 import MovieCard from "@/components/MovieCard";
 import SearchBar from "@/components/SearchBar";
+import TrendingCards from "@/components/TrendingCards";
 import { icons } from "@/constants/icons";
 import { images } from "@/constants/images";
 import { fetchMovies } from "@/services/api";
@@ -65,9 +66,9 @@ export default function Index() {
         horizontal
         showsHorizontalScrollIndicator={false}
         ItemSeparatorComponent={()=> <View className="w-4"/>}
-        renderItem={({ item }) => (
-          <Text className="text-white text-sm">{item.title}</Text>
-        )}
+        renderItem={({ item,index }) => (
+          <TrendingCards movie={item} index={index}/>
+          )}
          // disable FlatList scroll inside ScrollView
       />
     </View>
