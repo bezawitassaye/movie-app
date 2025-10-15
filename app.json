@@ -19,12 +19,9 @@
         "monochromeImage": "./assets/images/logo.png"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.bez01.movieapp"
     },
-    // "web": {
-    //   "output": "static",
-    //   "favicon": "./assets/images/logo.png"
-    // },
     "plugins": [
       "expo-router",
       [
@@ -43,6 +40,19 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "0555191f-5849-4d09-8def-c8f40235d238"
+      }
+    },
+    "owner": "bez01",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/0555191f-5849-4d09-8def-c8f40235d238"
     }
   }
 }
